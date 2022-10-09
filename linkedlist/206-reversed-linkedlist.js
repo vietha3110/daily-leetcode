@@ -13,15 +13,23 @@
 // Input: head = [1,2,3,4,5]
 // Output: [5,4,3,2,1]
 
-var reverseList = function (head) {
-    function innerReverse(curr, prev = null) {
-        if (!curr) {
-            return prev;
-        }
-        let next = curr.next;
-        curr.next = prev;
-        return (next, curr);
-    }
+// var reverseList = function (head) {
+//     function innerReverse(curr, prev = null) {
+//         if (!curr) {
+//             return prev;
+//         }
+//         let next = curr.next;
+//         curr.next = prev;
+//         return (next, curr);
+//     }
 
-    return innerReverse(head, null);
-}
+//     return innerReverse(head, null);
+// }
+var rotate = function(nums, k) {
+    let arr = (nums.slice(0, k + 1));
+    console.log(arr)
+    nums.concat(arr)
+    return nums
+};
+let nums = [1, 2, 3, 4, 5, 6, 7], k = 3;
+console.log(rotate(nums, k))
