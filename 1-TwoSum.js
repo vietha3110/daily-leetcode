@@ -9,13 +9,11 @@
 // }
 
 function twoSum(arr, target) {
-    let obj = {}; 
-    let result = [];
+    let obj = {};
     for (let i = 0; i < arr.length; i++) {
         if (arr[i] in obj) {
             let j = obj[arr[i]];
-            result.push(j, i);
-            return result;
+            return [j, i];
         }
         obj[target - arr[i]] = i
     }
