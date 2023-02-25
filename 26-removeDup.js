@@ -10,7 +10,6 @@
 var removeDuplicates = function (nums) {
     let pointer = 0;
     for (let i = 0; i < nums.length; i++) {
-        console.log(nums)
         if (i + 1 === nums.length  || nums[i] !== nums[i + 1]) {
             nums[pointer] = nums[i];
             console.log(nums)
