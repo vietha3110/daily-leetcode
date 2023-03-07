@@ -7,12 +7,9 @@ var firstUniqChar = function(s) {
             numObj[s[i]] = 1;
         }
     }
-    console.log(numObj)
-    let resChar = "";
     for (let key in numObj) {
         if(numObj[key] === 1) {
-            resChar = key;
-            return s.indexOf(resChar);
+            return s.indexOf(key);
         }
     }
     return -1
