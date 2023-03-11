@@ -1,8 +1,22 @@
 function convertNum(str, num1, num2) {
     let strDec = 0;
-    for (let i = str.length - 1, j = 0; i >= 0, j <= str.length - 1; i--, j++) {
-        strDec += num1 ** i * (+str[j]);
+    let temp = 1; 
+    // for (let i = str.length - 1; i >= 0; i--) {
+
+    //     strDec += num1 ** i * (+str[str.length - 1 - i]);
+        
+    // }
+    
+    // for (let i = 0; i < str.length; i++) {
+    //     strDec += temp * (+str[str.length - 1 - i]);
+    //     temp *= num1;
+    // }
+    
+    for (let i = 0; i < str.length; i++) {
+        strDec = strDec * num1 + (+str[i]);
     }
+
+
     let res = "";
     while (strDec > 0) {
         res = strDec % num2 + res;
@@ -11,4 +25,4 @@ function convertNum(str, num1, num2) {
     return res;
 }
 
-console.log(convertNum("1234", 10, 3))
+console.log(convertNum("13", 10, 2))
