@@ -3,9 +3,9 @@ function groupAnagrams(strs) {
     const countWords = {};
     for (let i = 0; i < strs.length; i++) {
         if (!(sortedStrs[i] in countWords)) {
-            countWords[sortedStrs[i]] = [strs[i]]
+            countWords[sortedStrs[i]] = [strs[i]];
         } else {
-            countWords[sortedStrs[i]].push(strs[i])
+            countWords[sortedStrs[i]].push(strs[i]);
         }
     }
     return Object.values(countWords);
