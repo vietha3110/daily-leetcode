@@ -2,7 +2,7 @@
 
 This repository contains my solutions to LeetCode problems that I have solved using JavaScript and Python. 
 
-For each problem, I have tried to solve it using the most straightforward and brute force approach, and then iteratively improve upon it until I arrive at the most optimal solution. Therefore, you will find multiple solutions to each problem, each one more efficient than the previous one.
+For each problem, I have tried to solve it using the most straightforward(brute force approach), and then iteratively improve upon it until I arrive at the most optimal solution. Therefore, you will find multiple solutions to each problem, each one more efficient than the previous one.
 
 Each problem solution is contained in its own file, organized by problem number and language used. For example, the solution to problem 1 using JavaScript is located in the file 1-twoSum.js, while the solution using Python is located in 1-twoSum.py.
 
