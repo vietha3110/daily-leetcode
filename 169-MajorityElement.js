@@ -28,4 +28,4 @@ function majorityElement(nums) {
     return candidate;
 }
 
-console.log(majorityElement(nums = [2,2,1,1,1,2,2]))
+console.log(majorityElement(nums = [3,3,4]))
