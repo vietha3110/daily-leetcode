@@ -85,36 +85,36 @@
 //     }
 //     return res;
 // }
-function normalizeArr(arr) {
-    const sorted = arr.sort((a, b) => a - b);
-    return sorted.toString();
-}
+// function normalizeArr(arr) {
+//     const sorted = arr.sort((a, b) => a - b);
+//     return sorted.toString();
+// }
 
 
-function threeSum(nums) {
-    const res = [];
-    const check = new Set();
-    const firstEle = new Map(); 
-    for (let j = 0; j < nums.length; j++) {
-        for (let k = 0; k < j; k++) {
-            const target = -nums[j] - nums[k];
-            if (firstEle.has(target)) {
-                const i = firstEle.get(target);
-                const triplet = [nums[i], nums[j], nums[k]];
-                const normalizedTriplet = normalizeArr(triplet);
-                if (i < k && !check.has(normalizedTriplet)) {
-                    check.add(normalizedTriplet);
-                    res.push(triplet);
-                }
+// function threeSum(nums) {
+//     const res = [];
+//     const check = new Set();
+//     const firstEle = new Map(); 
+//     for (let j = 0; j < nums.length; j++) {
+//         for (let k = 0; k < j; k++) {
+//             const target = -nums[j] - nums[k];
+//             if (firstEle.has(target)) {
+//                 const i = firstEle.get(target);
+//                 const triplet = [nums[i], nums[j], nums[k]];
+//                 const normalizedTriplet = normalizeArr(triplet);
+//                 if (i < k && !check.has(normalizedTriplet)) {
+//                     check.add(normalizedTriplet);
+//                     res.push(triplet);
+//                 }
                 
-            }
-        }
-        if (!firstEle.has(nums[j])) {
-            firstEle.set(nums[j], j);
-        }
-    }
-    return res;
-}
+//             }
+//         }
+//         if (!firstEle.has(nums[j])) {
+//             firstEle.set(nums[j], j);
+//         }
+//     }
+//     return res;
+// }
 
 
 
@@ -128,27 +128,38 @@ function threeSum(nums) {
 //     ))
 
 // Two pointer
-// function threeSum(arr) {
-//     const res = [];
-//     arr = arr.sort((a, b) => a - b);
-//     for (let i = 0; i < arr.length; i++) {
-//         const twoSum = 0 - arr[i];
-//         let left = i + 1;
-//         let right = arr.length - 1;
-//         while (left < right && right <= arr.length - 1) {
-//             if (arr[left] + arr[right] < twoSum) {
-//                 left++;
-//             } else if (arr[left] + arr[right] > twoSum) {
-//                 right--;
-//             } else { 
-//                 res.push([arr[i],arr[left], arr[right]]);
-//                 left++;
-//                 right--;
-//             }
-//         }
 
-//     } 
-//     return res;
-   
-// }
-// console.log(threeSum(nums =[-1,0,1,2,-1,-4]))
+function normalizeArr(arr) {
+    const sorted = arr.sort((a, b) => a - b);
+    return sorted.toString();
+}
+
+function threeSum(arr) {
+    const res = [];
+    const check = new Set();
+    arr = arr.sort((a, b) => a - b);
+    for (let i = 0; i < arr.length; i++) {
+        const twoSum = 0 - arr[i];
+        let left = i + 1;
+        let right = arr.length - 1;
+        while (left < right && right <= arr.length - 1) {
+            if (arr[left] + arr[right] < twoSum) {
+                left++;
+            } else if (arr[left] + arr[right] > twoSum) {
+                right--;
+            } else { 
+                const triplet = [arr[i], arr[left], arr[right]];
+                const normalized = normalizeArr(triplet);
+                if (!check.has(normalized)) {
+                    check.add(normalized);
+                    res.push(triplet);
+                }    
+                left++;
+                right--;
+            }
+        }
+
+    } 
+    return res;   
+}
+console.log(check([[-4,0,4],[-4,1,3],[-3,0,3],[-3,1,2],[-2,-1,3],[-2,0,2],[-1,-1,2],[-1,0,1]], [-3,-1,4]))
