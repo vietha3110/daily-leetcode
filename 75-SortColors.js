@@ -3,13 +3,13 @@ function sortColors(nums) {
     for (let i = 0; i < nums.length; i++) {
         if (nums[i] === 0) {
             [nums[i], nums[pointer]] = [nums[pointer], nums[i]];
-            pointer++
+            pointer++;
         }
     }
     for (let i = pointer; i < nums.length; i++) {
         if (nums[i] === 1) {
             [nums[i], nums[pointer]] = [nums[pointer], nums[i]];
-            pointer++
+            pointer++;
         }
     }
     return nums;
