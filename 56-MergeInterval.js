@@ -3,122 +3,45 @@
 // Output: [[1,6],[8,10],[15,18]]
 // Explanation: Since intervals [1,3] and [2,6] overlap, merge them into [1,6].
 
-const e = require("express");
+//Approach - Time complexity: O(N^2) but this approach is easy to understand.
+// 1. Traverse all elements in the given Array. 
+// 2. Check if consecutive element are isOverlapped. 
+// 3. If they are overlapped merge them. 
+// 4. Repeat step 2,3 til the end of array.
 
-// function intervals(arr) {
-//     for (let i = 0; i < arr.length - 1; i++) {
-//         const current = arr[i];
-//         const next = arr[i + 1];
-//         console.log(i, current, next)
-//         if (current[0] <= next[0] && current[1] > next[0]) {
-//             if (current[1] <= next[1]) {
-//                 arr[i][1] = next[1];
-//                 arr.splice(i + 1, 1);
-//                 i--;
-//                 console.log(16)
-//             }
-//         } else if (current[0] <= next[0] && current[1] <= next[0]) {
-//             if (next[0] === current[1] ) {
-//                 arr[i][1] = next[1];
-//                 arr.splice(i + 1, 1);
-//                 i--;
-//                 console.log(17)
-//             } 
-//         } else if (next[0] < current[0] && next[1] <= current[0]) {
-//             if (next[1] === current[0]) {
-//                 arr[i][0] = next[0];
-//                 arr.splice(i + 1, 1);
-//                 i--;
-//                 console.log(18)
-//             }
-//         } else if (next[0] < current[0] && next[1] > current[0]) {
-//             if (next[1] >= current[1]) {
-//                 arr[i][0] = next[0];
-//                 arr[i][1] = next[1]; 
-//                 arr.splice(i + 1, 1);
-//                 i--;
-//                 console.log(19)
-//             } else {
-//                 arr[i][0] = next[0];
-//                 arr.splice(i + 1, 1);
-//                 i--;
-//                 console.log(20)
-//             }
-//         }
-//         console.log(arr)
-//     }
-//     return arr;
+function isOverlapped(a, b) {
+    if (a[0] > b[0]) {
+        return isOverlapped(b, a);
+    }
+    return a[1] >= b[0];
+}
+
+function merge(a, b) {
+    return [Math.min(a[0], b[0]), Math.max(a[1], b[1])]
     
-// }
-// console.log(intervals([[ 2, 3 ], [ 4, 5 ], [ 6, 7 ], [ 1, 10 ]]
-//     ))
+}
 
-
-
-
-function intervals(arr) {
+function mergeIntervals(arr) {
+    const isRemoved = new Array(arr.length).fill(false);
     for (let i = 0; i < arr.length; i++) {
-        if (i >= 0) {
-            for (let j = i + 1; j < arr.length; j++) {
-                const current = arr[i];
-                const next = arr[j];
-                if (j > 0) {
-                    if (current[0] <= next[0] && next[0] < current[1]) {
-                        if (current[1] <= next[1]) {
-                            // arr[i][1] = next[1];
-                            // arr.splice(j, 1);
-                            arr[j][0] = current[0];
-                            arr.splice(i, 1);
-                            j--;
-                            i--;
-                        } else {
-                            arr[j][0] = current[0];
-                            arr[j][1] = current[1];
-                            arr.splice(i, 1);
-                            j--
-                        }
-                    } else if (current[0] <= next[0] && next[0] >= current[1]) {
-                        if (next[0] === current[1]) {
-                            // arr[i][1] = next[1];
-                            // arr.splice(j, 1);
-                            arr[j][0] = current[0];
-                            arr.splice(j, 1);
-                            i--;
-                            j--;
-                        }
-                    } else if (next[0] < current[0] && next[1] <= current[0]) {
-                        if (next[1] === current[0]) {
-                            arr[i][0] = next[0];
-                            arr.splice(j, 1);
-                            i--;
-                            j--;
-                        }
-                    } else if (next[0] < current[0] && next[1] > current[0]) {
-                        if (next[1] >= current[1]) {
-                            // arr[i][0] = next[0];
-                            // arr[i][1] = next[1];
-                            // arr.splice(j, 1);
-                            // j--;
-                            arr.splice(i, 1);
-                            i--;
-                            j--;
-                        } else {
-                            // arr[i][0] = next[0];
-                            // arr.splice(j, 1);
-                            arr[j][1] = current[1];
-                            j--;
-                            i--;
-                        }
-                    }
-                }
-                console.log(arr)
-                console.log(i)
-                
+        
+        for (let j = i + 1; j < arr.length; j++) {
+            if (isRemoved[j]) {
+                continue;
+            }
+            if (isOverlapped(arr[i], arr[j])) {
+                arr[j] = merge(arr[i], arr[j]);
+                isRemoved[i] = true;
             }
         }
-        
-      
     }
-    return arr;
+    const result = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (!isRemoved[i]) {
+            result.push(arr[i]);
+        }
+    }
+    return result;
 }
-console.log(intervals([[1,3],[2,6],[8,10],[15,18]]))
+// console.log(mergeIntervals([[2, 3], [4, 5], [6, 7], [1, 10]]));
+console.log(mergeIntervals([[1,3],[2,6],[8,10],[15,18]]))
