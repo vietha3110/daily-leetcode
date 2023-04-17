@@ -17,8 +17,7 @@ function isOverlapped(a, b) {
 }
 
 function merge(a, b) {
-    return [Math.min(a[0], b[0]), Math.max(a[1], b[1])]
-    
+    return [Math.min(a[0], b[0]), Math.max(a[1], b[1])];
 }
 
 function mergeIntervals(arr) {
@@ -43,5 +42,5 @@ function mergeIntervals(arr) {
     }
     return result;
 }
-// console.log(mergeIntervals([[2, 3], [4, 5], [6, 7], [1, 10]]));
+console.log(mergeIntervals([[2, 3], [4, 5], [6, 7], [1, 10]]));
 console.log(mergeIntervals([[1,3],[2,6],[8,10],[15,18]]))
